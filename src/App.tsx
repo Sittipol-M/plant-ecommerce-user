@@ -1,5 +1,16 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./pages/home/Home"
+
 function App() {
-  return <>App</>
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route>
+          <Route path="/" Component={Home} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
