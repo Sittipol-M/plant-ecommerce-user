@@ -1,6 +1,6 @@
 import { FC, ReactElement, createContext, useState } from "react"
-import { LoginService } from "../api/authen"
-import { LoginFormData } from "../types/pages/login"
+import { loginService, registerService } from "../api/authen"
+import { LoginFormData, RegisterFormData } from "../types/pages/login"
 import { User } from "../types/api/authen"
 import { encryptUser } from "../helpers/encryptUser"
 import { decryptUser } from "../helpers/decryptUser"
@@ -18,7 +18,7 @@ const AuthProvider: FC<{ children: ReactElement }> = ({ children }) => {
 
   const login = async (loginFormData: LoginFormData) => {
     try {
-      const { user: loginUser, accessToken } = await LoginService(loginFormData)
+      const { user: loginUser, accessToken } = await loginService(loginFormData)
       setUser(loginUser)
       localStorage.setItem("access-token", accessToken)
       Cookies.set("user", encryptUser(loginUser), {
@@ -30,8 +30,18 @@ const AuthProvider: FC<{ children: ReactElement }> = ({ children }) => {
       console.log(error)
     }
   }
+
+  const register = async (registerFormData: RegisterFormData) => {
+    try {
+      await registerService(registerFormData)
+      navigate("/login")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ login, user }}>
+    <AuthContext.Provider value={{ login, user, register }}>
       {children}
     </AuthContext.Provider>
   )
