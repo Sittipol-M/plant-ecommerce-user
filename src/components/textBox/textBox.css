@@ -1,0 +1,21 @@
+.text-box-input-small {
+  height: 20px;
+  width: auto;
+  padding: 5px;
+  font-size: small;
+  font-family: "Nunito";
+}
+
+.text-box-input-medium {
+  height: 30px;
+  width: auto;
+  padding: 5px;
+  font-size: medium;
+  font-family: "Nunito";
+}
+
+.text-box-icon {
+  margin-left: -30px;
+  cursor: pointer;
+  color: slategray;
+}

@@ -5,22 +5,25 @@ import NoPage from "./pages/noPage/NoPage"
 import Login from "./pages/login/Login"
 import AuthRoutes from "./pages/authRoutes/AuthRoutes"
 import Register from "./pages/register/Register"
+import ThemeProvider from "./contexts/ThemeProvider"
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route>
-            <Route path="*" Component={NoPage} />
-            <Route path="login" Component={Login} />
-            <Route path="register" Component={Register} />
-            <Route Component={AuthRoutes}>
-              <Route path="/" Component={Home} />
+      <ThemeProvider>
+        <AuthProvider>
+          <Routes>
+            <Route>
+              <Route path="*" Component={NoPage} />
+              <Route path="login" Component={Login} />
+              <Route path="register" Component={Register} />
+              <Route Component={AuthRoutes}>
+                <Route path="/" Component={Home} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </AuthProvider>
+          </Routes>
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
